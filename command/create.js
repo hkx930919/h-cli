@@ -43,11 +43,10 @@ module.exports = async function() {
   try {
     const projectPath = join(CWD, projectName)
     await shell(`git clone -b master ${GIT_VUE_PAHT} ${projectName}`)
-    success('clone success')
     fs.remove(join(projectName, '.git'))
-    success('del success')
     await installDep(projectName)
-    success('install success')
+    success('\n  创建成功,执行以下命令,启动项目')
+    success(`\n  cd ${projectName} && npm run dev`)
     spinner.stop()
   } catch (error) {
     err(error)

@@ -2,10 +2,8 @@ const inquirer = require('inquirer')
 const fs = require('fs-extra')
 const { join } = require('path')
 const ora = require('ora')
-const { shell } = require('execa')
-const CWD = process.cwd()
-const { success, err, installDep, normalizeEntry } = require('../util/tool')
-const { GIT_VUE_PAHT, __HKX_CONFIG, __SRC_PATH } = require('../util/path')
+const { success, err, normalizeEntry } = require('../util/tool')
+const { __HKX_CONFIG, __SRC_PATH } = require('../util/path')
 const { entry } = require(__HKX_CONFIG)
 /**
  * 询问路由名称
@@ -65,7 +63,7 @@ async function questionAgain(pageName) {
     {
       type: 'input',
       name: '_pageName',
-      message: `即将为${pageName}创建路由，你可以再次修改`,
+      message: `即将为${pageName}页面创建路由，你可以再次修改`,
       default: pageName,
       validate(val) {
         if (!val) {

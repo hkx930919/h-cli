@@ -1,8 +1,8 @@
 const chalk = require('chalk')
 const fs = require('fs-extra')
 const { shell, shellSync } = require('execa')
-const { __NODE_MODULE_PATH, __SRC_PATH, __PAGE_PATH } = require('./path')
-
+const { __NODE_MODULE_PATH, __SRC_PATH, __PAGE_PATH, __HKX_CONFIG } = require('./path')
+const CWD = process.cwd()
 const success = (...args) => {
   console.log(chalk.green(...args))
 }
@@ -20,7 +20,6 @@ const hasYarn = () => {
     shell(`npm i yarn -g`)
   }
 }
-hasYarn()
 /**
  * @param {Array||String} entry 页面入口
  * @return pagename
@@ -46,6 +45,18 @@ const installDep = async (projectPath, remove = true) => {
   if (remove && fs.pathExists(__NODE_MODULE_PATH)) {
     fs.remove(__NODE_MODULE_PATH)
   }
+  /**
+   * 移除lock文件，防止报错
+   */
+  const __packageLock = join(CWD, 'package-lock.json')
+  if (fs.pathExistsSync(__packageLock)) {
+    await fs.remove(__packageLock)
+  }
+  const yarnLockPath = join(CWD, 'yarn.lock')
+  if (fs.pathExistsSync(yarnLockPath)) {
+    await fs.remove(yarnLockPath)
+  }
+
   try {
     await shell(`cd ${projectPath} && ${hasYarn ? 'yarn' : 'npm i'}`)
   } catch (error) {
@@ -53,4 +64,34 @@ const installDep = async (projectPath, remove = true) => {
   }
 }
 
-module.exports = { success, err, info, installDep, normalizeEntry }
+const writeHkxConfig = pagename => {
+  if (!fs.pathExistsSync(__HKX_CONFIG)) {
+    try {
+      const text = `
+            /**
+             * 项目配置页
+             */
+           module.exports = {
+             /**entry 可以为string,数组,如果为''，那么读取项目目录
+              *   entry: 'example'
+              *   entry: ['example1','example2']
+              */
+             entry: ${pagename}
+           }
+           `
+
+      fs.writeFileSync(__HKX_CONFIG, text)
+    } catch (error) {
+      err(error)
+    }
+  } else {
+    let configInfo = fs.readFileSync(__HKX_CONFIG, { encoding: 'utf8' })
+    configInfo = configInfo.replace(
+      /entry\s*:\s*((\[(.+?)\])|('(.+?)')|("(.+?)"))\s*,?/g,
+      `entry:['${pagename}'],`
+    )
+    fs.writeFileSync(__HKX_CONFIG, configInfo)
+  }
+}
+
+module.exports = { success, err, info, installDep, normalizeEntry, writeHkxConfig, hasYarn }

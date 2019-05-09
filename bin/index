@@ -17,6 +17,20 @@ program
   .action(() => {
     require('../command/route.js')()
   })
+program
+  .command('page')
+  .description('新建页面')
+  .alias('p')
+  .action(() => {
+    require('../command/page.js')()
+  })
+program
+  .command('init')
+  .description('初始化一个空的工程')
+  .alias('i')
+  .action(() => {
+    require('../command/init.js')()
+  })
 
 // 解析命令行参数
 program.parse(process.argv)

@@ -5,5 +5,5 @@ module.exports = {
   __NODE_MODULE_PATH: resolve('node_modules'),
   __SRC_PATH: resolve('src'),
   __PAGE_PATH: resolve('page'),
-  __HKX_CONFIG: resolve('hkx.config')
+  __HKX_CONFIG: resolve('hkx.config.js')
 }
