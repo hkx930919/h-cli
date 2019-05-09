@@ -4,7 +4,7 @@
         "hkx": "./bin/index"
     },
     "version": "1.0.0",
-    "description": "",
+    "description": "搭建的脚手架，创建一套vue工程，create init page route",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
