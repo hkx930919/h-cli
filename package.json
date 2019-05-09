@@ -1,5 +1,5 @@
 {
-    "name": "h-cli",
+    "name": "hkx-cli",
     "bin": {
         "hkx": "./bin/index"
     },
@@ -13,8 +13,14 @@
         "type": "git",
         "url": "git+https://github.com/hkx930919/h-cli.git"
     },
-    "keywords": [],
-    "author": "jin_gang <jin_gang@hunliji.com>",
+    "keywords": [
+        "vue框架脚手架cli",
+        "create",
+        "init",
+        "page",
+        "route"
+    ],
+    "author": "hkx",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/hkx930919/h-cli/issues"
