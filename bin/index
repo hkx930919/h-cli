@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+// 编写指令
+const program = require('commander')
+
+program.version(require('../package').version)
+program
+  .command('create')
+  .description('创建一个新工程')
+  .alias('c')
+  .action(() => {
+    require('../command/create.js')()
+  })
+program
+  .command('route')
+  .description('新建路由')
+  .alias('r')
+  .action(() => {
+    require('../command/route.js')()
+  })
+
+// 解析命令行参数
+program.parse(process.argv)
+if (!program.args.length) {
+  program.help()
+}

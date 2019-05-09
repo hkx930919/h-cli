@@ -1,0 +1,38 @@
+{
+    "name": "h-cli",
+    "bin": {
+        "hkx": "./bin/index"
+    },
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hkx930919/h-cli.git"
+    },
+    "keywords": [],
+    "author": "jin_gang <jin_gang@hunliji.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/hkx930919/h-cli/issues"
+    },
+    "prettier": {
+        "semi": false,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "printWidth": 100
+    },
+    "homepage": "https://github.com/hkx930919/h-cli#readme",
+    "dependencies": {
+        "chalk": "^2.4.2",
+        "commander": "^2.20.0",
+        "execa": "^1.0.0",
+        "fs-extra": "^7.0.1",
+        "glob": "^7.1.4",
+        "inquirer": "^6.3.1",
+        "ora": "^3.4.0"
+    }
+}
