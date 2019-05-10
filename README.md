@@ -1,6 +1,7 @@
 ## 脚手架说明
 
-> 一个 vue 多页面打包应用，默认安装 vue vue-router vuex axios vant element-ui,vant element-ui 支持按需加载组件
+> 一个 vue 多页面打包应用，默认安装 vue vue-router vuex axios vant element-ui
+> vant element-ui 支持按需加载组件
 > 支持 less
 > 配置 eslint
 > 配置按需加载 import()
