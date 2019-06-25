@@ -1,5 +1,6 @@
 const chalk = require('chalk')
 const fs = require('fs-extra')
+const { join } = require('path')
 const { shell, shellSync } = require('execa')
 const { __NODE_MODULE_PATH, __SRC_PATH, __PAGE_PATH, __HKX_CONFIG } = require('./path')
 const CWD = process.cwd()
